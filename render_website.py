@@ -19,8 +19,12 @@ def rebuild():
     os.makedirs('pages', exist_ok=True)
     books = list(chunked(books, 5))
     for page, page_books in enumerate(books):
-        rendered_page = template.render(books=page_books)
-        with open(f'pages/index{page}.html', 'w', encoding="utf8") as file:
+        rendered_page = template.render(
+            books=page_books,
+            total_pages=len(books),
+            current_page=page+1
+        )
+        with open(f'pages/index{page+1}.html', 'w', encoding="utf8") as file:
             file.write(rendered_page)
 
     print("Site rebuilt")

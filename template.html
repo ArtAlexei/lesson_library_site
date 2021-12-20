@@ -12,28 +12,50 @@
   <title>Hello, world!</title>
 </head>
 <body>
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+  {% if current_page==1 %}
+    <li class="page-item disabled"><a class="page-link" href="/pages/index{{current_page-1}}.html">Назад</a></li>
+  {% else %}
+    <li class="page-item"><a class="page-link" href="/pages/index{{current_page-1}}.html">Назад</a></li>
+  {% endif %}
+  {% for page in range(1,total_pages+1) %}
+    {% if current_page==page %}
+      <li class="page-item active"><a class="page-link" href="/pages/index{{page}}.html">{{page}}</a></li>
+    {% else %}
+      <li class="page-item"><a class="page-link" href="/pages/index{{page}}.html">{{page}}</a></li>
+    {% endif %}
+  {% endfor %}
+  {% if current_page==total_pages %}
+    <li class="page-item disabled"><a class="page-link" href="/pages/index{{current_page+1}}.html">Вперед</a></li>
+  {% else %}
+    <li class="page-item"><a class="page-link" href="/pages/index{{current_page+1}}.html">Вперед</a></li>
+  {% endif %}
+  </ul>
+</nav>
 <div class="container">
   <div class="row">
     {% for pair in books %}
-    {% for book in pair %}
-    <div class="col">
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="https://tululu.org{{book['img_src']}}" class="card-img" alt="{{book['title']}}">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{book['title']}}</h5>
-              <p class="card-text">{{book['author']}}</p>
-              <p class="card-text"><small class="text-muted"><a href="{{book['file_path']|urlencode}}" target="_blank">Читать</a></small></p>
+      {% for book in pair %}
+        <div class="col">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="https://tululu.org{{book['img_src']}}" class="card-img" alt="{{book['title']}}">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{book['title']}}</h5>
+                  <p class="card-text">{{book['author']}}</p>
+                  <p class="card-text"><small class="text-muted"><a href="{{book['file_path']|urlencode}}" target="_blank">Читать</a></small>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    {% endfor %}
-    <div class="w-100"></div>
+      {% endfor %}
+      <div class="w-100"></div>
     {% endfor %}
   </div>
 </div>

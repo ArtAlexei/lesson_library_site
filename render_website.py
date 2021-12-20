@@ -1,4 +1,4 @@
-import json
+import json, os
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from livereload import Server
@@ -16,9 +16,13 @@ def rebuild():
 
     books = list(chunked(books, 2))
 
-    rendered_page = template.render(books=books)
-    with open('index.html', 'w', encoding="utf8") as file:
-        file.write(rendered_page)
+    os.makedirs('pages', exist_ok=True)
+    books = list(chunked(books, 5))
+    for page, page_books in enumerate(books):
+        rendered_page = template.render(books=page_books)
+        with open(f'pages/index{page}.html', 'w', encoding="utf8") as file:
+            file.write(rendered_page)
+
     print("Site rebuilt")
 
 

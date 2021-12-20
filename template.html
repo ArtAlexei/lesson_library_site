@@ -26,7 +26,7 @@
             <div class="card-body">
               <h5 class="card-title">{{book['title']}}</h5>
               <p class="card-text">{{book['author']}}</p>
-              <p class="card-text"><small class="text-muted"><a href="{{book['file_path']}}" target="_blank">Читать</a></small></p>
+              <p class="card-text"><small class="text-muted"><a href="{{book['file_path']|urlencode}}" target="_blank">Читать</a></small></p>
             </div>
           </div>
         </div>

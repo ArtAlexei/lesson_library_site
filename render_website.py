@@ -13,6 +13,7 @@ def rebuild():
     template = env.get_template('template.html')
     with open("books.json", "r", encoding="utf-8") as file:
         books = json.loads(file.read())
+
     books = list(chunked(books, 2))
 
     rendered_page = template.render(books=books)

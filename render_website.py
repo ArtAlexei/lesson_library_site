@@ -1,4 +1,5 @@
-import json, os
+import json
+import os
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from livereload import Server
@@ -22,15 +23,20 @@ def rebuild():
         rendered_page = template.render(
             books=page_books,
             total_pages=len(books),
-            current_page=page+1
+            current_page=page + 1
         )
-        with open(f'pages/index{page+1}.html', 'w', encoding="utf8") as file:
+        with open(f'pages/index{page + 1}.html', 'w', encoding="utf8") as file:
             file.write(rendered_page)
 
     print("Site rebuilt")
 
 
-rebuild()
-server = Server()
-server.watch('template.html', rebuild)
-server.serve(root='.')
+def main():
+    rebuild()
+    server = Server()
+    server.watch('template.html', rebuild)
+    server.serve(root='.')
+
+
+if __name__ == "__main__":
+    main()

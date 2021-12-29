@@ -3,7 +3,7 @@
 - код написан в образовательных целях на онлайн-курсе для веб-разработчиков dvmn.org.
 - книги взяты с сайта http://tululu.org
 - сайт опубликован по ссылке:
-  `https://artalexei.github.io/library_site/pages/index1.html`
+  https://artalexei.github.io/library_site/pages/index1.html
 
                                                                                                                                                                                                                                                                                                                                                             
 ## Как открыть сайт локально
@@ -18,7 +18,7 @@
 - Скачайте код
 - Установите зависимости командой `pip install -r requirements.txt`
 - Запустите программу командой `python3 render_website.py`
-- сайт будет доступен по адресу `http://127.0.0.1:5500/pages/index1.html`
+- сайт будет доступен по адресу http://127.0.0.1:5500/pages/index1.html
 
 
 ## Данные

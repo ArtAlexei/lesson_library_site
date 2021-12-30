@@ -18,15 +18,15 @@ def rebuild():
     with open("books.json", "r", encoding="utf-8") as file:
         books = json.load(file)
 
-    pairs_books = list(chunked(books, COLUMNS_ON_PAGE))
-    splited_books = list(chunked(pairs_books, LINES_ON_PAGE))
+    pair_books = list(chunked(books, COLUMNS_ON_PAGE))
+    splitted_books = list(chunked(pair_books, LINES_ON_PAGE))
 
     os.makedirs('pages', exist_ok=True)
 
-    for page, page_books in enumerate(splited_books, start=1):
+    for page, page_books in enumerate(splitted_books, start=1):
         rendered_page = template.render(
             books=page_books,
-            total_pages=len(splited_books),
+            total_pages=len(splitted_books),
             current_page=page
         )
         with open(f'pages/index{page}.html', 'w', encoding="utf8") as file:

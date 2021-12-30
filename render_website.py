@@ -18,8 +18,8 @@ def rebuild():
     with open("books.json", "r", encoding="utf-8") as file:
         books = json.load(file)
 
-    pair_books = list(chunked(books, COLUMNS_ON_PAGE))
-    splitted_books = list(chunked(pair_books, LINES_ON_PAGE))
+    books_pairs = list(chunked(books, COLUMNS_ON_PAGE))
+    splitted_books = list(chunked(books_pairs, LINES_ON_PAGE))
 
     os.makedirs('pages', exist_ok=True)
 
@@ -44,3 +44,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
